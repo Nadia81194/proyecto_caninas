@@ -1,0 +1,14 @@
+# Secretos y credenciales
+.env
+.env.*
+!.env.example
+
+# Dependencias
+node_modules/
+
+# Sistema y editor
+.DS_Store
+Thumbs.db
+.vscode/
+*.log
+*.zip

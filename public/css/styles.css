@@ -1,0 +1,150 @@
+/* ==========================================================
+   Las Caninas · Sistema de diseño
+   Tipografía: Inter (diseñada para pantallas, cifras tabulares)
+   Rojo reservado para acciones destructivas y alertas;
+   azul como color primario de acción.
+   ========================================================== */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --bg: #f4f5f7;
+  --surface: #ffffff;
+  --border: #e4e7ec;
+  --text: #101828;
+  --muted: #667085;
+  --side: #0f172a;
+  --side-text: #cbd5e1;
+  --primary: #1d4ed8;
+  --primary-dark: #1e40af;
+  --danger: #b42318;
+  --danger-bg: #fef3f2;
+  --ok: #067647;   --ok-bg: #ecfdf3;
+  --warn: #b54708; --warn-bg: #fffaeb;
+  --info: #175cd3; --info-bg: #eff4ff;
+  --gray: #475467; --gray-bg: #f2f4f7;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(16, 24, 40, .06), 0 1px 3px rgba(16, 24, 40, .1);
+  --shadow-lg: 0 20px 40px rgba(16, 24, 40, .18);
+}
+
+/* ---------- 2. Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0; display: flex; min-height: 100vh;
+  font: 14px/1.5 var(--font); color: var(--text); background: var(--bg);
+  font-variant-numeric: tabular-nums; -webkit-font-smoothing: antialiased;
+}
+h1, h2, p { margin: 0; }
+button, input, select, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.skip { position: absolute; left: -999px; background: var(--primary); color: #fff; padding: 8px 14px; z-index: 99; }
+.skip:focus { left: 8px; top: 8px; }
+.muted { color: var(--muted); }
+.ic { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ---------- 3. Layout ---------- */
+.sidebar { width: 250px; flex-shrink: 0; background: var(--side); color: var(--side-text); padding: 20px 12px; position: sticky; top: 0; height: 100vh; overflow-y: auto; }
+.brand { display: flex; align-items: center; gap: 12px; padding: 0 8px 20px; border-bottom: 1px solid #1e293b; margin-bottom: 14px; }
+.brand-mark { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 9px; background: #dc2626; color: #fff; font-weight: 700; letter-spacing: .5px; }
+.brand strong { display: block; color: #fff; font-size: 15px; line-height: 1.2; }
+.brand small { color: #94a3b8; font-size: 12px; }
+.group { padding: 14px 10px 6px; font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #64748b; }
+.sidebar nav a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; border-radius: 8px; color: var(--side-text); text-decoration: none; font-weight: 500; transition: background .15s, color .15s; }
+.sidebar nav a:hover { background: #1e293b; color: #fff; }
+.sidebar nav a.on { background: #1e293b; color: #fff; box-shadow: inset 3px 0 0 #3b82f6; }
+.main { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.topbar { display: flex; align-items: center; gap: 14px; padding: 18px 32px; background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+.titles { flex: 1; min-width: 0; }
+.topbar h1 { font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+.topbar p { color: var(--muted); font-size: 13px; }
+#content { padding: 24px 32px 48px; outline: none; }
+.icon-btn { display: none; background: none; border: 1px solid var(--border); border-radius: 8px; padding: 7px; cursor: pointer; }
+
+/* ---------- 4. Botones ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 16px; border-radius: 8px; border: 1px solid transparent; font-weight: 600; cursor: pointer; transition: background .15s, border-color .15s; white-space: nowrap; }
+.btn-primary { background: var(--primary); color: #fff; box-shadow: var(--shadow); }
+.btn-primary:hover { background: var(--primary-dark); }
+.btn-ghost { background: transparent; color: var(--gray); border-color: transparent; }
+.btn-ghost:hover:not(:disabled) { background: var(--gray-bg); }
+.btn-ghost.danger { color: var(--danger); }
+.btn-ghost.danger:hover { background: var(--danger-bg) !important; }
+.btn-outline { border-color: var(--border); background: var(--surface); }
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #912018; }
+.btn-sm { padding: 5px 10px; font-size: 13px; }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+
+/* ---------- 5. Tarjetas y KPIs ---------- */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+.section-title { font-size: 13px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin: 0 0 12px; }
+.kpis { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-bottom: 32px; }
+.kpi { display: flex; align-items: center; gap: 14px; padding: 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); color: inherit; text-decoration: none; }
+a.kpi:hover { border-color: #b2ccff; }
+.kpi-ic { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 10px; background: var(--gray-bg); color: var(--gray); }
+.kpi.info .kpi-ic { background: var(--info-bg); color: var(--info); }
+.kpi.ok .kpi-ic { background: var(--ok-bg); color: var(--ok); }
+.kpi.warn .kpi-ic { background: var(--warn-bg); color: var(--warn); }
+.kpi p { color: var(--muted); font-size: 13px; }
+.kpi strong { font-size: 24px; font-weight: 600; letter-spacing: -.02em; }
+
+/* ---------- 6. Tabla ---------- */
+.toolbar { display: flex; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border); }
+.search { display: flex; align-items: center; gap: 8px; flex: 1; max-width: 360px; padding: 0 12px; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--muted); }
+.search:focus-within { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29, 78, 216, .15); }
+.search input { flex: 1; border: 0; outline: 0; padding: 9px 0; background: transparent; min-width: 0; }
+.table-wrap { overflow: auto; max-height: calc(100vh - 290px); }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); white-space: nowrap; max-width: 300px; overflow: hidden; text-overflow: ellipsis; }
+th { position: sticky; top: 0; background: #f9fafb; padding: 0; z-index: 1; }
+th button { width: 100%; display: flex; align-items: center; gap: 6px; padding: 11px 16px; background: none; border: 0; cursor: pointer; font-size: 12px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+th button:hover { color: var(--text); }
+th.num button { justify-content: flex-end; }
+tbody tr:hover { background: #f9fafb; }
+td.num, th.num { text-align: right; }
+td.act { text-align: right; padding: 6px 12px; }
+.pager { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; color: var(--muted); font-size: 13px; }
+.pager div { display: flex; gap: 6px; }
+.empty { display: grid; justify-items: center; gap: 8px; padding: 56px 20px; text-align: center; color: var(--muted); }
+.empty .ic { width: 32px; height: 32px; }
+.spinner { width: 28px; height: 28px; border: 3px solid var(--border); border-top-color: var(--primary); border-radius: 50%; animation: spin .8s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- 7. Badges ---------- */
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
+.badge.ok { background: var(--ok-bg); color: var(--ok); }
+.badge.info { background: var(--info-bg); color: var(--info); }
+.badge.warn { background: var(--warn-bg); color: var(--warn); }
+.badge.err { background: var(--danger-bg); color: var(--danger); }
+.badge.gray { background: var(--gray-bg); color: var(--gray); }
+
+/* ---------- 8. Formularios y diálogos ---------- */
+dialog { border: 0; border-radius: 14px; padding: 0; width: min(600px, 94vw); box-shadow: var(--shadow-lg); color: var(--text); }
+dialog::backdrop { background: rgba(15, 23, 42, .55); }
+dialog form > header { padding: 22px 24px 4px; }
+dialog h2 { font-size: 18px; font-weight: 600; }
+dialog header p { color: var(--muted); margin-top: 2px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 18px 24px; max-height: 58vh; overflow: auto; }
+.field.wide { grid-column: 1 / -1; }
+.field label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 500; }
+.field label b { color: var(--danger); margin-left: 3px; }
+.field input, .field select, .field textarea { width: 100%; padding: 9px 12px; border: 1px solid #d0d5dd; border-radius: 8px; background: var(--surface); box-shadow: 0 1px 2px rgba(16, 24, 40, .05); }
+.field input:focus, .field select:focus, .field textarea:focus { outline: 0; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(29, 78, 216, .15); }
+dialog footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--border); background: #f9fafb; border-radius: 0 0 14px 14px; }
+#cfm { width: min(420px, 94vw); }
+
+/* ---------- 9. Toast ---------- */
+#toast { position: fixed; right: 24px; bottom: 24px; padding: 12px 18px; border-radius: 8px; background: var(--text); color: #fff; font-weight: 500; box-shadow: var(--shadow-lg); opacity: 0; transform: translateY(8px); pointer-events: none; transition: .2s; }
+#toast.show { opacity: 1; transform: none; }
+#toast.err { background: var(--danger); }
+
+/* ---------- 10. Responsive y accesibilidad ---------- */
+@media (max-width: 900px) {
+  .sidebar { position: fixed; z-index: 50; left: 0; transform: translateX(-100%); transition: transform .2s; }
+  .sidebar.open { transform: none; box-shadow: var(--shadow-lg); }
+  .icon-btn { display: block; }
+  .topbar, #content { padding-left: 16px; padding-right: 16px; }
+  .grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }

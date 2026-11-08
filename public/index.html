@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Las Caninas · Gestión del taller</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#content">Saltar al contenido</a>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">LC</span>
+      <div><strong>Las Caninas</strong><small>Gestión del taller</small></div>
+    </div>
+    <nav id="menu" aria-label="Principal"></nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="menuBtn" aria-label="Abrir menú"></button>
+      <div class="titles"><h1 id="title"></h1><p id="subtitle"></p></div>
+      <div id="actions"></div>
+    </header>
+    <main id="content" tabindex="-1"></main>
+  </div>
+
+  <dialog id="dlg" aria-labelledby="dlgTitle"></dialog>
+  <dialog id="cfm"></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
